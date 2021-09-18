@@ -1,0 +1,144 @@
+# Query: pct-admin
+# ContextLines: 1
+
+46 results - 8 files
+
+angular\nx.json:
+  29    "projects": {
+  30:     "pct-pct_admin": {
+  31        "tags": []
+  32      },
+  33:     "pct-pct_admin-e2e": {
+  34        "tags": [],
+  35:       "implicitDependencies": ["pct-pct_admin"]
+  36      }
+
+angular\workspace.json:
+    3    "projects": {
+    4:     "pct-pct_admin": {
+    5        "projectType": "application",
+    6:       "root": "apps/pct/pct_admin",
+    7:       "sourceRoot": "apps/pct/pct_admin/src",
+    8        "prefix": "angular",
+
+   13            "options": {
+   14:             "outputPath": "dist/apps/pct/pct_admin",
+   15:             "index": "apps/pct/pct_admin/src/index.html",
+   16:             "main": "apps/pct/pct_admin/src/main.ts",
+   17:             "polyfills": "apps/pct/pct_admin/src/polyfills.ts",
+   18:             "tsConfig": "apps/pct/pct_admin/tsconfig.app.json",
+   19              "inlineStyleLanguage": "scss",
+   20              "assets": [
+   21:               "apps/pct/pct_admin/src/favicon.ico",
+   22:               "apps/pct/pct_admin/src/assets"
+   23              ],
+   24:             "styles": ["apps/pct/pct_admin/src/styles.scss"],
+   25              "scripts": [],
+   26              "customWebpackConfig": {
+   27:               "path": "apps/pct/pct_admin/webpack.config.js"
+   28              }
+
+   45                  {
+   46:                   "replace": "apps/pct/pct_admin/src/environments/environment.ts",
+   47:                   "with": "apps/pct/pct_admin/src/environments/environment.prod.ts"
+   48                  }
+
+   51                "customWebpackConfig": {
+   52:                 "path": "apps/pct/pct_admin/webpack.prod.config.js"
+   53                }
+
+   69              "production": {
+   70:               "browserTarget": "pct-pct_admin:build:production"
+   71              },
+   72              "development": {
+   73:               "browserTarget": "pct-pct_admin:build:development"
+   74              }
+
+   83            "options": {
+   84:             "browserTarget": "pct-pct_admin:build"
+   85            }
+
+   90              "lintFilePatterns": [
+   91:               "apps/pct/pct_admin/src/**/*.ts",
+   92:               "apps/pct/pct_admin/src/**/*.html"
+   93              ]
+
+   97            "executor": "@nrwl/jest:jest",
+   98:           "outputs": ["coverage/apps/pct/pct_admin"],
+   99            "options": {
+  100:             "jestConfig": "apps/pct/pct_admin/jest.config.js",
+  101              "passWithNoTests": true
+
+  106            "options": {
+  107:             "commands": ["nx serve pct-pct_admin"]
+  108            }
+
+  111      },
+  112:     "pct-pct_admin-e2e": {
+  113:       "root": "apps/pct/pct_admin-e2e",
+  114:       "sourceRoot": "apps/pct/pct_admin-e2e/src",
+  115        "projectType": "application",
+
+  119            "options": {
+  120:             "cypressConfig": "apps/pct/pct_admin-e2e/cypress.json",
+  121:             "tsConfig": "apps/pct/pct_admin-e2e/tsconfig.e2e.json",
+  122:             "devServerTarget": "pct-pct_admin:serve:development"
+  123            },
+
+  125              "production": {
+  126:               "devServerTarget": "pct-pct_admin:serve:production"
+  127              }
+
+  132            "options": {
+  133:             "lintFilePatterns": ["apps/pct/pct_admin-e2e/**/*.{js,ts}"]
+  134            }
+
+  157    },
+  158:   "defaultProject": "pct-pct_admin"
+  159  }
+
+angular\apps\pct\pct_admin\jest.config.js:
+   1  module.exports = {
+   2:   displayName: 'pct-pct_admin',
+   3    preset: '../../../jest.preset.js',
+
+  10    },
+  11:   coverageDirectory: '../../../coverage/apps/pct/pct_admin',
+  12    transform: {
+
+angular\apps\pct\pct_admin\webpack.config.js:
+  11    output: {
+  12:     uniqueName: 'pct-pct_admin',
+  13      publicPath: 'auto',
+
+angular\apps\pct\pct_admin\src\app\app.component.spec.ts:
+  18  
+  19:   it(`should have as title 'pct-pct_admin'`, () => {
+  20      const fixture = TestBed.createComponent(AppComponent);
+  21      const app = fixture.componentInstance;
+  22:     expect(app.title).toEqual('pct-pct_admin');
+  23    });
+
+  29      expect(compiled.querySelector('h1')?.textContent).toContain(
+  30:       'Welcome to pct-pct_admin!'
+  31      );
+
+angular\apps\pct\pct_admin\src\app\app.component.ts:
+  8  export class AppComponent {
+  9:   title = 'pct-pct_admin';
+  10  }
+
+angular\apps\pct\pct_admin-e2e\cypress.json:
+   8    "video": true,
+   9:   "videosFolder": "../../../dist/cypress/apps/pct/pct_admin-e2e/videos",
+  10:   "screenshotsFolder": "../../../dist/cypress/apps/pct/pct_admin-e2e/screenshots",
+  11    "chromeWebSecurity": false
+
+angular\apps\pct\pct_admin-e2e\src\integration\app.spec.ts:
+   2  
+   3: describe('pct-pct_admin', () => {
+   4    beforeEach(() => cy.visit('/'));
+
+  10      // Function helper example, see `../support/app.po.ts` file
+  11:     getGreeting().contains('Welcome to pct-pct_admin!');
+  12    });

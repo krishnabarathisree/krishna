@@ -1,7 +1,281 @@
 {
-  "version": 2,
-  "projects": {},
-  "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "version": 2,
+    "projects": {
+        "pct-admin": {
+            "projectType": "application",
+            "root": "apps/pct/admin",
+            "sourceRoot": "apps/pct/admin/src",
+            "prefix": "angular",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/angular:webpack-browser",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "outputPath": "dist/apps/pct/admin",
+                        "index": "apps/pct/admin/src/index.html",
+                        "main": "apps/pct/admin/src/main.ts",
+                        "polyfills": "apps/pct/admin/src/polyfills.ts",
+                        "tsConfig": "apps/pct/admin/tsconfig.app.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": [
+                            "apps/pct/admin/src/favicon.ico",
+                            "apps/pct/admin/src/assets"
+                        ],
+                        "styles": ["apps/pct/admin/src/styles.scss"],
+                        "scripts": [],
+                        "customWebpackConfig": {
+                            "path": "apps/pct/admin/webpack.config.js"
+                        }
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [{
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "1mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
+                                }
+                            ],
+                            "fileReplacements": [{
+                                "replace": "apps/pct/admin/src/environments/environment.ts",
+                                "with": "apps/pct/admin/src/environments/environment.prod.ts"
+                            }],
+                            "outputHashing": "all",
+                            "customWebpackConfig": {
+                                "path": "apps/pct/admin/webpack.prod.config.js"
+                            }
+                        },
+                        "development": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "executor": "@nrwl/angular:webpack-server",
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "pct-admin:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "pct-admin:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development",
+                    "options": {
+                        "port": 4200
+                    }
+                },
+                "extract-i18n": {
+                    "executor": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "pct-admin:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/pct/admin/src/**/*.ts",
+                            "apps/pct/admin/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/pct/admin"],
+                    "options": {
+                        "jestConfig": "apps/pct/admin/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "serve-mfe": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": ["nx serve pct-dasboard", "nx serve pct-admin"]
+                    }
+                }
+            }
+        },
+        "pct-admin-e2e": {
+            "root": "apps/pct/admin-e2e",
+            "sourceRoot": "apps/pct/admin-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/pct/admin-e2e/cypress.json",
+                        "tsConfig": "apps/pct/admin-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "pct-admin:serve:development"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "pct-admin:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/pct/admin-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "pct-dasboard": {
+            "projectType": "application",
+            "root": "apps/pct/dasboard",
+            "sourceRoot": "apps/pct/dasboard/src",
+            "prefix": "angular",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/angular:webpack-browser",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "outputPath": "dist/apps/pct/dasboard",
+                        "index": "apps/pct/dasboard/src/index.html",
+                        "main": "apps/pct/dasboard/src/main.ts",
+                        "polyfills": "apps/pct/dasboard/src/polyfills.ts",
+                        "tsConfig": "apps/pct/dasboard/tsconfig.app.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": [
+                            "apps/pct/dasboard/src/favicon.ico",
+                            "apps/pct/dasboard/src/assets"
+                        ],
+                        "styles": ["apps/pct/dasboard/src/styles.scss"],
+                        "scripts": [],
+                        "customWebpackConfig": {
+                            "path": "apps/pct/dasboard/webpack.config.js"
+                        }
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [{
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "1mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
+                                }
+                            ],
+                            "fileReplacements": [{
+                                "replace": "apps/pct/dasboard/src/environments/environment.ts",
+                                "with": "apps/pct/dasboard/src/environments/environment.prod.ts"
+                            }],
+                            "outputHashing": "all",
+                            "customWebpackConfig": {
+                                "path": "apps/pct/dasboard/webpack.prod.config.js"
+                            }
+                        },
+                        "development": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "executor": "@nrwl/angular:webpack-server",
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "pct-dasboard:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "pct-dasboard:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development",
+                    "options": {
+                        "port": 4201
+                    }
+                },
+                "extract-i18n": {
+                    "executor": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "pct-dasboard:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/pct/dasboard/src/**/*.ts",
+                            "apps/pct/dasboard/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/pct/dasboard"],
+                    "options": {
+                        "jestConfig": "apps/pct/dasboard/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "pct-dasboard-e2e": {
+            "root": "apps/pct/dasboard-e2e",
+            "sourceRoot": "apps/pct/dasboard-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/pct/dasboard-e2e/cypress.json",
+                        "tsConfig": "apps/pct/dasboard-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "pct-dasboard:serve:development"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "pct-dasboard:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/pct/dasboard-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        }
+    },
+    "cli": {
+        "defaultCollection": "@nrwl/angular"
+    },
+    "generators": {
+        "@nrwl/angular:application": {
+            "style": "scss",
+            "linter": "eslint",
+            "unitTestRunner": "jest",
+            "e2eTestRunner": "cypress"
+        },
+        "@nrwl/angular:library": {
+            "style": "scss",
+            "linter": "eslint",
+            "unitTestRunner": "jest"
+        },
+        "@nrwl/angular:component": {
+            "style": "scss"
+        }
+    },
+    "defaultProject": "pct-admin"
 }

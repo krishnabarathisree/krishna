@@ -1,35 +1,44 @@
 {
-  "npmScope": "angular",
-  "affected": {
-    "defaultBase": "master"
-  },
-  "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
+    "npmScope": "angular",
+    "affected": {
+        "defaultBase": "master"
     },
-    ".eslintrc.json": "*"
-  },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
-      }
+    "implicitDependencies": {
+        "package.json": {
+            "dependencies": "*",
+            "devDependencies": "*"
+        },
+        ".eslintrc.json": "*"
+    },
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "@nrwl/workspace/tasks-runners/default",
+            "options": {
+                "cacheableOperations": ["build", "lint", "test", "e2e"]
+            }
+        }
+    },
+    "targetDependencies": {
+        "build": [{
+            "target": "build",
+            "projects": "dependencies"
+        }]
+    },
+    "projects": {
+        "pct-admin": {},
+        "pct-dasboard": {
+            "tags": []
+        },
+        "pct-dasboard-e2e": {
+            "tags": [],
+            "implicitDependencies": ["pct-dasboard"]
+        },
+        "pct-admin": {
+            "tags": []
+        },
+        "pct-admin-e2e": {
+            "tags": [],
+            "implicitDependencies": ["pct-admin"]
+        }
     }
-  },
-  "targetDependencies": {
-    "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ]
-  },
-  "projects": {}
 }
